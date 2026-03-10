@@ -1,4 +1,4 @@
-package com.shg.search.backtrack;
+package com.shg.recursion.backtrack;
 
 import java.util.ArrayList;
 import java.util.List;

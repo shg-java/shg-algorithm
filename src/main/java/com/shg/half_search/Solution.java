@@ -1,5 +1,7 @@
 package com.shg.half_search;
 
+import java.util.logging.Level;
+
 class FindMedianSortedArrays {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int length1 = nums1.length;
@@ -46,8 +48,42 @@ class FindMedianSortedArrays {
                 index2 = index2 + middle + 1;
             }
         }
-
-
     }
+}
 
+// 搜索旋转排序数组
+class Search {
+    public int search(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length - 1;
+        int n = nums.length;
+        while (end >= start) {
+
+            int mid = (start + end)   / 2;
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            if (nums[mid] > nums[0]) {
+                if (nums[0] <= target && target < nums[mid]) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
+            }else{
+                if (nums[mid] < target && target <= nums[n - 1]) {
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+}
+// 非严格递增顺序排列查找目标值位置
+class SearchRange {
+    public int[] searchRange(int[] nums, int target) {
+        int
+    }
 }

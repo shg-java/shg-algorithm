@@ -1,6 +1,5 @@
 package com.shg.two_pointers.fast_and_slow_pointer;
 
-import com.shg.algorithm.data_structure.link_list.ListNode;
 
 /**
  * LeetCode 141 - 环形链表（链表找环）

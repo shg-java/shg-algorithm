@@ -1,5 +1,8 @@
 package com.shg.dynamic_programming;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // 最长回文子串
 class LongestPalindrome {
     // todo 中心扩散法
@@ -39,6 +42,7 @@ class LongestPalindrome {
         System.out.println(lp.longestPalindrome("bb"));
     }
 }
+
 // todo 继续理解
 class CoinChange {
 
@@ -56,8 +60,8 @@ class CoinChange {
         if (rem == 0) {
             return 0;
         }
-        if (count[rem-1] !=0) {
-            return count[rem-1];
+        if (count[rem - 1] != 0) {
+            return count[rem - 1];
         }
 
         int min = Integer.MAX_VALUE;
@@ -67,12 +71,47 @@ class CoinChange {
                 min = 1 + res;
             }
         }
-        count[rem-1] = (min == Integer.MAX_VALUE) ? -1 : min;
-        return count[rem-1];
+        count[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return count[rem - 1];
     }
 
     public static void main(String[] args) {
         CoinChange coinChange = new CoinChange();
         System.out.println(coinChange.coinChange(new int[]{1, 2, 3}, 6));
+    }
+}
+
+//
+class LongestValidParentheses {
+    public int longestValidParentheses(String s) {
+        int maxLen = 0;
+        int[] dp = new int[s.length()];
+
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == ')') {
+                if (s.charAt(i - 1) == '(') {
+                    if (i == 1) {
+                        dp[i] = 2;
+                    } else {
+                        dp[i] = dp[i - 2] + 2;
+                    }
+
+                } else if (i - dp[i - 1] > 0 && s.charAt(i - dp[i - 1] - 1) == '(') {
+                    if (i - dp[i - 1] >=2) {
+                        dp[i] = dp[i - 1] + dp[i - dp[i - 1] - 2] + 2;
+                    }else {
+                        dp[i] = dp[i - 1] + 2;
+                    }
+
+                }
+                maxLen = Math.max(maxLen, dp[i]);
+            }
+        }
+        return maxLen;
+    }
+
+    public static void main(String[] args) {
+        int i = new LongestValidParentheses().longestValidParentheses("(()");
+        System.out.println(i);
     }
 }
